@@ -116,7 +116,7 @@ There are two ways to set up the API key/s:
 
 ## Examples
 
-For the complete list of examples see the folder: src/test/java/examples
+For the complete list of examples see the folder: [src/test/java/examples](src/test/java/examples)
 
 ### Basic example
 Below is the most basic example calling a local inference server (here Ollama) with API settings given as literals.
