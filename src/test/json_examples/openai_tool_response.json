@@ -1,0 +1,44 @@
+{
+  "id": "chatcmpl-AhfT4NXptGYcxJuW1yquSWmli2nO8",
+  "object": "chat.completion",
+  "created": 1734970870,
+  "model": "gpt-4o-mini-2024-07-18",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_xGFGA9oEs5eZnfSNAZCTIHQY",
+            "type": "function",
+            "function": {
+              "name": "getWeather",
+              "arguments": "{\"location\":\"New York\",\"unit\":\"C\"}"
+            }
+          }
+        ],
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "tool_calls"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 92,
+    "completion_tokens": 20,
+    "total_tokens": 112,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "system_fingerprint": "fp_0aa8d3e20b"
+}

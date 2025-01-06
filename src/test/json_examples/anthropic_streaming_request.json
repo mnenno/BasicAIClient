@@ -1,0 +1,13 @@
+{
+  "model": "claude-3-haiku-20240307",
+  "max_tokens": 4096,
+  "temperature": 0.7,
+  "stream": true,
+  "system": "You are a helpful assistant.",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello, Claude"
+    }
+  ]
+}

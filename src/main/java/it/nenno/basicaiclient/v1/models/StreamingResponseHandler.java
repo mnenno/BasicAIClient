@@ -1,0 +1,38 @@
+/*
+ * Copyright 2025 Mario Nenno
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package it.nenno.basicaiclient.v1.models;
+
+public interface StreamingResponseHandler {
+    // Accumulator for concatenating response content
+    StringBuilder contentAccumulator = new StringBuilder();
+
+    void onMessage(AiResponseOpenai response);
+    void onError(Exception e);
+    void onComplete();
+
+    // Default method to accumulate content
+    default void accumulateContent(String content) {
+        if (content != null) {
+            contentAccumulator.append(content);
+        }
+    }
+
+    // Method to retrieve the accumulated content
+    default String getAccumulatedContent() {
+        return contentAccumulator.toString();
+    }
+}

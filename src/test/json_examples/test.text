@@ -1,0 +1,14 @@
+{
+    type=function,
+    function={
+        name=getWeather,
+        description=Get the current weather for a given location,
+        parameters={
+            type=object,
+            properties={location={description=The location to get weather for., type=string}, unit={description=In degree celsius (C) or fahrenheit (F)., type=string, enum=[C, F]}},
+            additionalProperties=false,
+            required=[location, unit]
+        },
+        strict=true
+    }
+}
