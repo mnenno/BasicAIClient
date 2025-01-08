@@ -295,12 +295,8 @@ public class AiClient {
                                         if (response != null) {
                                             handler.onMessage(response);
 
-                                            // accumulated the contents additionally
-                                            handler.accumulateContent(response.getChoices().get(0).getDelta().getContent());
-
                                             // check if was the last response
                                             if (AiResponseOpenai.FINISH_REASON_STOP.equals(response.getChoices().get(0).getFinishReason())) {
-                                                LOGGER.info("accumulateContent: "+ handler.getAccumulatedContent());
                                                 if (logDetails) LOGGER.info("[Streaming Complete]");
                                                 handler.onComplete();
                                                 break;
@@ -323,12 +319,8 @@ public class AiClient {
                                         if (response != null) {
                                             handler.onMessage(response);
 
-                                            // accumulated the contents additionally
-                                            handler.accumulateContent(response.getChoices().get(0).getDelta().getContent());
-
                                             // check if was the last response
                                             if (AiResponseOpenai.FINISH_REASON_STOP.equals(response.getChoices().get(0).getFinishReason())) {
-                                                // LOGGER.info("accumulateContent: "+ handler.getAccumulatedContent());
                                                 if (logDetails) LOGGER.info("[Streaming Complete]");
                                                 handler.onComplete();
                                                 break;

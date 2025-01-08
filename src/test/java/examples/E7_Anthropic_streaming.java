@@ -68,7 +68,6 @@ public class E7_Anthropic_streaming {
                     @Override
                     public void onComplete() {
                         System.out.println("\n[Streaming Complete]");
-                        //System.out.println("Accumulated content: "+ getAccumulatedContent());
                     }
                 });
             } catch (Exception e) {

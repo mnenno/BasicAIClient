@@ -65,7 +65,6 @@ public class E2_Ollama_Streaming {
                 @Override
                 public void onComplete() {
                     System.out.println("\n[Streaming Complete]");
-                    //System.out.println("Accumulated content: "+ getAccumulatedContent());
                 }
             });
         } catch (Exception e) {

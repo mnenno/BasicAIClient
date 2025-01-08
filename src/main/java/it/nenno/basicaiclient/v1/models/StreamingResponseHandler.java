@@ -17,22 +17,7 @@
 package it.nenno.basicaiclient.v1.models;
 
 public interface StreamingResponseHandler {
-    // Accumulator for concatenating response content
-    StringBuilder contentAccumulator = new StringBuilder();
-
     void onMessage(AiResponseOpenai response);
     void onError(Exception e);
     void onComplete();
-
-    // Default method to accumulate content
-    default void accumulateContent(String content) {
-        if (content != null) {
-            contentAccumulator.append(content);
-        }
-    }
-
-    // Method to retrieve the accumulated content
-    default String getAccumulatedContent() {
-        return contentAccumulator.toString();
-    }
 }
