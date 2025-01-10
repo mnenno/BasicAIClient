@@ -283,6 +283,8 @@ public class AiClient {
                         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                             String line;
                             AiResponseOpenai response;
+                            // TEST
+                            StringBuilder chunksBuilder = new StringBuilder();
 
                             while ((line = reader.readLine()) != null) {
                                 if (!line.isEmpty()) {
@@ -293,18 +295,21 @@ public class AiClient {
                                         // -------- For OpenAi-like responses (JSONL format)
                                         response = ResponseConverter.getOpenAIResponseFromStreaming(line, objectMapper, this.clientType);
                                         if (response != null) {
-                                            handler.onMessage(response);
+                                            String chunk = response.getChoices().get(0).getDelta().getContent();
+                                            handler.onMessage(chunk);
+                                            // accumulate the chunks
+                                            chunksBuilder.append(chunk);
 
                                             // check if was the last response
                                             if (AiResponseOpenai.FINISH_REASON_STOP.equals(response.getChoices().get(0).getFinishReason())) {
                                                 if (logDetails) LOGGER.info("[Streaming Complete]");
-                                                handler.onComplete();
+                                                handler.onComplete(chunksBuilder.toString());
                                                 break;
                                             }
                                         }
                                         else {
                                             if (logDetails) LOGGER.info("[Streaming Complete response null]");
-                                            handler.onComplete();
+                                            handler.onComplete(chunksBuilder.toString());
                                             break;
                                         } // else-if response not null
                                     }
@@ -317,12 +322,15 @@ public class AiClient {
                                         // convert the parsing result object to an Openai-type response
                                         response = ResponseConverter.toOpenaiResponseForStreaming(anthropicSSEparsingResult);
                                         if (response != null) {
-                                            handler.onMessage(response);
+                                            String chunk = response.getChoices().get(0).getDelta().getContent();
+                                            handler.onMessage(chunk);
+                                            // accumulate the chunks
+                                            chunksBuilder.append(chunk);
 
                                             // check if was the last response
                                             if (AiResponseOpenai.FINISH_REASON_STOP.equals(response.getChoices().get(0).getFinishReason())) {
                                                 if (logDetails) LOGGER.info("[Streaming Complete]");
-                                                handler.onComplete();
+                                                handler.onComplete(chunksBuilder.toString());
                                                 break;
                                             }
                                         } // if response is not null

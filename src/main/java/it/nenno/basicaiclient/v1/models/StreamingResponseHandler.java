@@ -17,7 +17,7 @@
 package it.nenno.basicaiclient.v1.models;
 
 public interface StreamingResponseHandler {
-    void onMessage(AiResponseOpenai response);
+    void onMessage(String chunk);
     void onError(Exception e);
-    void onComplete();
+    void onComplete(String accumulatedChunks);
 }

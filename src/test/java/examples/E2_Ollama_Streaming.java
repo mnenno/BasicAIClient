@@ -44,16 +44,16 @@ public class E2_Ollama_Streaming {
         // Utility method to print a waiting message like: Calling ...
         System.out.println(WaitingPrinter.print(aiRequest, aiClient));
 
-
+        // ----------------------------------------------
         // call the client and get the streaming response (same as for OpenAi client)
+        final StringBuilder accumulator = new StringBuilder();
         try {
             boolean logDetails = false; // do not show detailed log
             aiClient.streamChat(aiRequest, logDetails, new StreamingResponseHandler() {
-
+                StringBuilder memory;
                 @Override
-                public void onMessage(AiResponseOpenai response) {
-                    // get response content
-                    System.out.print(response.getChoices().get(0).getDelta().getContent());
+                public void onMessage(String chunk) {
+                    System.out.print(chunk);
                 }
 
                 @Override
@@ -63,12 +63,15 @@ public class E2_Ollama_Streaming {
                 }
 
                 @Override
-                public void onComplete() {
+                public void onComplete(String accumulatedChunks) {
                     System.out.println("\n[Streaming Complete]");
+                    // return the accumulated chunks outside the method
+                    accumulator.append(accumulatedChunks);
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("\n======\nAccumulated chunks: "+ accumulator);
     }
 }

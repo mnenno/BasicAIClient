@@ -49,13 +49,13 @@ public class E6_OpenAI_streaming {
 
             // ----------------------------------------------
             // call the client and get the streaming response
+            final StringBuilder accumulator = new StringBuilder();
             try {
                 boolean logDetails = false; // do not show detailed log
                 aiClient.streamChat(aiRequest, logDetails, new StreamingResponseHandler() {
                     @Override
-                    public void onMessage(AiResponseOpenai response) {
-                        // get response content
-                        System.out.print(response.getChoices().get(0).getDelta().getContent());
+                    public void onMessage(String chunk) {
+                        System.out.print(chunk);
                     }
 
                     @Override
@@ -65,15 +65,16 @@ public class E6_OpenAI_streaming {
                     }
 
                     @Override
-                    public void onComplete() {
+                    public void onComplete(String accumulatedChunks) {
                         System.out.println("\n[Streaming Complete]");
+                        accumulator.append(accumulatedChunks);
                     }
                 });
             } catch (Exception e) {
                 e.printStackTrace();
             }
             // ----------------------------------------------
-
+            //System.out.println("\n\nAccumulated chunks: "+ accumulator);
         }
         else System.err.println("Either provider or API key not found!");
     }
