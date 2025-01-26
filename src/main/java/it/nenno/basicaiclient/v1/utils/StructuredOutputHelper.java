@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -87,7 +88,7 @@ public class StructuredOutputHelper {
             throw new RuntimeException(e);
         } catch (JsonMappingException e) {
             throw new RuntimeException(e);
-        } catch (JsonProcessingException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return schemaNode;
@@ -174,7 +175,7 @@ public class StructuredOutputHelper {
                 throw new RuntimeException(e);
             } catch (JsonMappingException e) {
                 throw new RuntimeException(e);
-            } catch (JsonProcessingException e) {
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }

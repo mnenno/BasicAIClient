@@ -50,7 +50,7 @@ but extended to further API features of JSON mode, function/tool calling, and st
 ## Requirements
 - **JDK Version**: JDK 8 or later.
 - **Dependencies**:
-    - [FasterXML Jackson JSON library](https://github.com/FasterXML/jackson) version 2.14.2 or later
+    - [FasterXML Jackson JSON library](https://github.com/FasterXML/jackson) version 2.8.8 or later
     - SLF4J with log4j 2.20.0 (or with bridge dependency to log4j 1.x)
 
 ---

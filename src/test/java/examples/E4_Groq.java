@@ -43,7 +43,7 @@ public class E4_Groq {
             System.out.println(WaitingPrinter.print(aiRequest, aiClient));
 
             // Send the request to the AI API and get the response
-            boolean logDetails = true; // show detailed log
+            boolean logDetails = false; // show detailed log
             AiResponse aiResponse = aiClient.generate(aiRequest, logDetails);
 
             System.out.println("Response: " + aiResponse.getChoices().get(0).getMessage().getContent());

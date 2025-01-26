@@ -19,6 +19,8 @@ package it.nenno.basicaiclient.v1.models;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static it.nenno.basicaiclient.v1.AiClient.*;
+
+import java.io.IOException;
 import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -335,7 +337,7 @@ public class ResponseConverter {
                 // convert the OllamaResponse to a OpenAIResponse
                 aiResponseOpenai = toOpenaiResponseForStreaming(ollamaResponse);
             }
-            catch (JsonProcessingException e) {
+            catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -346,7 +348,7 @@ public class ResponseConverter {
                 String json = line.substring(5).trim();
                 try {
                     aiResponseOpenai = objectMapper.readValue(json, AiResponseOpenai.class);
-                } catch (JsonProcessingException e) {
+                } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }

@@ -131,10 +131,10 @@ public class AiResponseOpenai {
         public Delta getDelta() {return delta;}
         public void setDelta(Delta delta) {this.delta = delta;}
 
+        @JsonProperty("finish_reason")
         public String getFinishReason() {
             return finishReason;
         }
-
         public void setFinishReason(String finishReason) {
             this.finishReason = finishReason;
         }

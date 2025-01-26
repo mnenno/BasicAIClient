@@ -2,9 +2,10 @@ package it.nenno.basicaiclient.v1.models;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import it.nenno.basicaiclient.v1.utils.MapperWithCaseStrategy;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 
 import static org.junit.Assert.*;
@@ -33,7 +34,7 @@ public class ResponseConverterTest {
 
         // Create an ObjectMapper instance
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+        MapperWithCaseStrategy.setSnakeCase(objectMapper);
 
         // Deserialize JSON string to Person object
         AiResponse aiResponse = null;
@@ -47,7 +48,7 @@ public class ResponseConverterTest {
             System.out.println("Common resp obj: "+ aiResponse);
 
         }
-        catch (JsonProcessingException ex) {
+        catch (IOException ex) {
             throw new RuntimeException(ex);
         }
 
@@ -100,7 +101,7 @@ public class ResponseConverterTest {
 
         // Create an ObjectMapper instance
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+        MapperWithCaseStrategy.setSnakeCase(objectMapper);
 
         // Deserialize JSON string to Person object
         AiResponse aiResponse = null;
@@ -114,7 +115,7 @@ public class ResponseConverterTest {
             System.out.println("Common resp obj: "+ aiResponse);
 
         }
-        catch (JsonProcessingException ex) {
+        catch (IOException ex) {
             throw new RuntimeException(ex);
         }
 
@@ -180,7 +181,7 @@ public class ResponseConverterTest {
 
         // Create an ObjectMapper instance
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+        MapperWithCaseStrategy.setSnakeCase(objectMapper);
 
         // Deserialize JSON string to Person object
         AiResponse aiResponse = null;
@@ -204,7 +205,7 @@ public class ResponseConverterTest {
             System.out.println("Common resp obj: "+ aiResponse);
 
         }
-        catch (JsonProcessingException ex) {
+        catch (IOException ex) {
             throw new RuntimeException(ex);
         }
 

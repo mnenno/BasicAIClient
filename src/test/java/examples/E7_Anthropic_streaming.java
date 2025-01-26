@@ -52,7 +52,7 @@ public class E7_Anthropic_streaming {
             // call the client and get the streaming response
             final StringBuilder accumulator = new StringBuilder();
             try {
-                boolean logDetails = true; // do not show detailed log
+                boolean logDetails = false; // do not show detailed log
                 aiClient.streamChat(aiRequest, logDetails, new StreamingResponseHandler() {
                     @Override
                     public void onMessage(String chunk) {

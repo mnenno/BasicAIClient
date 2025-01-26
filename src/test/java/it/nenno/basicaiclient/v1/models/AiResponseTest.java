@@ -2,8 +2,10 @@ package it.nenno.basicaiclient.v1.models;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import it.nenno.basicaiclient.v1.utils.MapperWithCaseStrategy;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -29,7 +31,7 @@ public class AiResponseTest {
 
         // Create an ObjectMapper instance
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+        MapperWithCaseStrategy.setSnakeCase(objectMapper);
 
 
         // Deserialize JSON string to Person object
@@ -37,7 +39,7 @@ public class AiResponseTest {
         try {
             AiResponseOllama respObjOllama = objectMapper.readValue(responseStr, AiResponseOllama.class);
             aiResponse = ResponseConverter.normalizeOllama(respObjOllama);
-        } catch (JsonProcessingException ex) {
+        } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
         // Print the deserialized object
@@ -84,14 +86,14 @@ public class AiResponseTest {
 
         // Create an ObjectMapper instance
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+        MapperWithCaseStrategy.setSnakeCase(objectMapper);
 
         // Deserialize JSON string to Person object
         AiResponse aiResponse = null;
         try {
             AiResponseOllama respObjOllama = objectMapper.readValue(responseStr, AiResponseOllama.class);
             aiResponse = ResponseConverter.normalizeOllama(respObjOllama);
-        } catch (JsonProcessingException ex) {
+        } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
         // Print the deserialized object

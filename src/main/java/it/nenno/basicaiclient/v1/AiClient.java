@@ -16,10 +16,9 @@
 
 package it.nenno.basicaiclient.v1;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import it.nenno.basicaiclient.v1.models.*;
+import it.nenno.basicaiclient.v1.utils.MapperWithCaseStrategy;
 import it.nenno.basicaiclient.v1.utils.PrettyJsonPrinter;
 import it.nenno.basicaiclient.v1.utils.StructuredOutputHelper;
 import org.slf4j.Logger;
@@ -82,7 +81,8 @@ public class AiClient {
                         // Deserialize JSON string to AiResponseOllama object
                         // Create an ObjectMapper instance
                         ObjectMapper objectMapper = new ObjectMapper();
-                        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+                        MapperWithCaseStrategy.setSnakeCase(objectMapper);
+                        //objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
 
                         try {
                             // convert to common AiResponse
@@ -100,7 +100,7 @@ public class AiClient {
                                 aiResponse = ResponseConverter.normalizeOpenai(respObjOpenai);
                             }
 
-                        } catch (JsonProcessingException ex) {
+                        } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
                         // Print the deserialized object for debug
@@ -214,8 +214,8 @@ public class AiClient {
     }
 
     public void streamChat(AiRequest aiRequest, boolean logDetails, boolean doSend, StreamingResponseHandler handler) {
-        // For debug
-        boolean logLines = false; // logDetails && true;
+        // set true only for debugging
+        boolean logLines = false;
 
         // log the client
         if (logDetails) LOGGER.info("aiClient = " + this);
@@ -289,10 +289,19 @@ public class AiClient {
                             while ((line = reader.readLine()) != null) {
                                 if (!line.isEmpty()) {
                                     // For debug (but comment the normal output to see just the response)
-                                    if (logLines) LOGGER.info("line: "+line);
+                                    if (logLines) LOGGER.info("line:\n"+line);
 
                                     if (!CLIENT_TYPE_ANTHROPIC.equals(this.clientType)) {
                                         // -------- For OpenAi-like responses (JSONL format)
+
+                                        // stop anyway if response is [DONE] due to strange responses of Gemini
+                                        int positionOfDone = line.indexOf("[DONE]");
+                                        if (positionOfDone != -1 && positionOfDone < 10) {
+                                            if (logDetails) LOGGER.info(" DONE reached");
+                                            handler.onComplete(chunksBuilder.toString());
+                                            break;
+                                        }
+
                                         response = ResponseConverter.getOpenAIResponseFromStreaming(line, objectMapper, this.clientType);
                                         if (response != null) {
                                             String chunk = response.getChoices().get(0).getDelta().getContent();

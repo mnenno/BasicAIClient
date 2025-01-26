@@ -18,6 +18,7 @@ package it.nenno.basicaiclient.v1.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import it.nenno.basicaiclient.v1.utils.MapperWithCaseStrategy;
 
 import java.io.IOException;
 
@@ -60,7 +61,8 @@ public class AnthropicSSELineParser {
     // constructor
     public AnthropicSSELineParser() {
         this.mapper = new ObjectMapper();
-        this.mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        MapperWithCaseStrategy.setSnakeCase(this.mapper);
+        //this.mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         this.result = new ParsingResult();
     }
 

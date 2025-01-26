@@ -40,7 +40,7 @@ public class E2_Ollama_Chat_Memory {
 
         // -------- First turn
         // Send the request to the AI API and get the response
-        boolean logDetails = true; // do not show detailed log
+        boolean logDetails = false; // do not show detailed log
         AiResponse aiResponse = aiClient.generate(aiRequest, logDetails);
         System.out.println("Response1: " + aiResponse.getChoices().get(0).getMessage().getContent());
 

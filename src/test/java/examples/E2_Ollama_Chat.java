@@ -38,7 +38,7 @@ public class E2_Ollama_Chat {
         System.out.println(WaitingPrinter.print(aiRequest, aiClient));
 
         // Send the request to the AI API and get the response
-        boolean logDetails = true; // do not show detailed log
+        boolean logDetails = false; // do not show detailed log
         AiResponse aiResponse = aiClient.generate(aiRequest, logDetails);
 
         System.out.println("Response: " + aiResponse.getChoices().get(0).getMessage().getContent());

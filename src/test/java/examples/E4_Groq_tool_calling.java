@@ -45,7 +45,7 @@ public class E4_Groq_tool_calling {
 
             // Fill messages into the request to send
             AiRequest aiRequest = new AiRequest.Builder()
-                    .model(api.getModel("llama3-8b-tool-use"))
+                    .model(api.getModel("llama3.3-70b"))
                     .messages(messages)
                     .temperature(0.0)
                     .tools(tools)
