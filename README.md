@@ -13,8 +13,7 @@ remote Generative AI providers with a simple and unified interface.
 - [Installation](#installation)
 - [Usage](#usage)
   - [Local inference server](#local-inference-server)
-  - [API keys](#api-keys)
-  - [Logging]()
+  - [API keys](#api-keys) 
 - [Examples](#examples) 
   - [Basic example](#basic-example)
   - [Common example](#common-example)
@@ -250,7 +249,7 @@ public class E4_Groq {
 ```
 
 ### Other examples
-In the folder src/test/java/examples you find more examples for other supported features:
+In the folder [src/test/java/examples](src/test/java/examples) you find more examples for other supported features:
 - JSON mode
 - response streaming
 - tool/function calling
