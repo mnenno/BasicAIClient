@@ -1,5 +1,6 @@
 # BasicAIClient
 
+![BasicAIClient logo](http://www.nenno.it/img/basicaiclient_logo.jpg)<br>
 A basic Java client library to access both local inference servers and 
 remote Generative AI providers with a simple and unified interface. 
 
