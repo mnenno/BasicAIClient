@@ -60,22 +60,7 @@ but extended to further API features of JSON mode, function/tool calling, and st
 ### Manual installation of the BasicAIClient
 - Install the dependencies in the [pom.xml](pom.xml) file
 - Download the latest BasicAIClient jar file from the release section
-- be sure you have a logging configuration file (log4j2.xml), here a simple example:
-  ```XML
-  <?xml version="1.0" encoding="UTF-8"?>
-  <Configuration status="WARN">
-      <Appenders>
-          <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}.%M:%L - %m%n"/>            
-          </Console>
-      </Appenders>
-      <Loggers>
-          <Root level="info">
-              <AppenderRef ref="Console"/>
-          </Root>
-      </Loggers>
-  </Configuration>
-  ```
+- be sure you have a logging configuration file
 - Add the dependencies and the BasicAIClient jar file to your project's classpath
 
 ---
