@@ -38,6 +38,15 @@
       ]
     },
     {
+      "provider_name": "Togetherai",
+      "api_url": "https://api.together.xyz/v1/chat/completions",
+      "api_key": {"key": "put-your-key-here", "env_key": "TOGETHERAI_API_KEY"},
+      "models": [
+        {"llama-3.3-70b-inst-free": "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"},
+        {"deepseek-R1-70b-free": "deepseek-ai/DeepSeek-R1-Distill-Llama-70B-free"}
+      ]
+    },
+    {
       "provider_name": "OpenAI",
       "api_url": "https://api.openai.com/v1/chat/completions",
       "api_key": {"key": "put-your-key-here", "env_key": "OPENAI_API_KEY"},
