@@ -39,6 +39,8 @@ public class AiClient {
     public static final String CLIENT_TYPE_OLLAMA= "ollama";
     public static final String CLIENT_TYPE_ANTHROPIC= "anthropic";
 
+    private static final String JSON_UTF8 = "application/json; charset=UTF-8";
+
     private static final String VERSION = Version.VERSION;
     private String apiKey;
     private String apiURL;
@@ -161,8 +163,9 @@ public class AiClient {
             connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Content-Type", JSON_UTF8);
             connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("Accept-Charset", "UTF-8");
             setAuthorization(connection, apiKey);
             if (CLIENT_TYPE_ANTHROPIC.equals(this.clientType)) {
                 setAnthropicVersion(connection);
@@ -245,8 +248,9 @@ public class AiClient {
                         URL url = new URL(apiURL);
                         connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("POST");
-                        connection.setRequestProperty("Content-Type", "application/json");
+                        connection.setRequestProperty("Content-Type", JSON_UTF8);
                         connection.setRequestProperty("Accept", "application/json");
+                        connection.setRequestProperty("Accept-Charset", "UTF-8");
                         setAuthorization(connection, apiKey);
                         if (CLIENT_TYPE_ANTHROPIC.equals(this.clientType)) {
                             setAnthropicVersion(connection);
@@ -280,7 +284,8 @@ public class AiClient {
                         // Get the response
                         ObjectMapper objectMapper = new ObjectMapper();
                         // Read response stream
-                        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                        try (BufferedReader reader = new BufferedReader(
+                                new InputStreamReader(connection.getInputStream(),  StandardCharsets.UTF_8))) {
                             String line;
                             AiResponseOpenai response;
                             // TEST
