@@ -40,7 +40,7 @@ but extended to further API features of JSON mode, function/tool calling, and st
 - has low requirements of JDK and external libraries
 - tested with local inference servers as Ollama and LM Studio
 - tested with OpenAI-compatible remote API providers as Groq and OpenRouter
-- tested with OpenAI and Anthropic 
+- tested with OpenAI, Anthropic and Mistral 
 - supported API features: temperature, streaming, JSON mode, function/tool calling, structured output (Ollama and OpenAI)
 - a logDetails variable, that shows detailed logging when set to true
 - has an optional API configuration manager for multiple API providers with a resource file in JSON format 
@@ -239,7 +239,7 @@ In the folder [src/test/java/examples](src/test/java/examples) you find more exa
 - response streaming
 - tool/function calling
 - structured output
-- use of other remote API providers (OpenRouter, OpenAI and Anthropic)
+- use of other remote API providers (OpenAI, Anthropic, Mistral, OpenRouter, Together AI)
 
 Note, that not all API providers do support all features  (e.g. Anthropic has no explicit JSON mode) 
 

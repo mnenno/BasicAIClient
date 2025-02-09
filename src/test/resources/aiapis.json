@@ -34,7 +34,7 @@
       "api_url": "https://openrouter.ai/api/v1/chat/completions",
       "api_key": {"key": "put-your-key-here", "env_key": "OPENROUTER_API_KEY"},
       "models": [
-        {"llama-3.1-70b": "meta-llama/llama-3.1-70b-instruct:free"}
+        {"nemotron-70b": "nvidia/llama-3.1-nemotron-70b-instruct:free"}
       ]
     },
     {
@@ -69,6 +69,15 @@
       "api_key": {"key": "put-your-key-here", "env_key": "GEMINI_API_KEY"},
       "models": [
         {"gemini-2-flash-exp": "gemini-2.0-flash-exp"}
+      ]
+    },
+    {
+      "provider_name": "Mistral",
+      "api_url": "https://api.mistral.ai/v1/chat/completions",
+      "api_key": {"key": "put-your-key-here", "env_key": "MISTRAL_API_KEY"},
+      "models": [
+        {"mistral-small-latest": "mistral-small-latest"},
+        {"mistral-nemo": "open-mistral-nemo"}
       ]
     }
   ]

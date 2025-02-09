@@ -12,25 +12,25 @@ import it.nenno.basicaiclient.v1.utils.WaitingPrinter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class E5_OpenRouter {
+public class EM_Mistral_chat {
 
     public static void main(String[] args) {
 
         // Read the API configuration for given API provider
-        AiApi api = ConfigManager.getApiByProvider("OpenRouter");
+        AiApi api = ConfigManager.getApiByProvider("Mistral");
         if (api != null && api.getApiKeyValue() != null) {
 
             // Define messages to send
             List<AiMessage> messages = new ArrayList<>();
             messages.add(new AiMessage("system", "You are a helpful assistant."));
-            messages.add(new AiMessage("user", "Why the sky is blue?"));
+            messages.add(new AiMessage("user", "Why the ocean is salty?"));
             System.out.println(MessagePrinter.print(messages));
 
             // Fill messages into the request to send
             AiRequest aiRequest = new AiRequest.Builder()
-                    .model(api.getModel("nemotron-70b"))
+                    .model(api.getModel("mistral-nemo"))
                     .messages(messages)
-                    .temperature(0.7)
+                    .temperature(0.1)
                     .build();
 
             // Build client for endpoint
